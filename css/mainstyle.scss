@@ -1,0 +1,98 @@
+// Imports:
+
+// Site colors:
+$mainColor: Green;
+$mainBgColor: LightBlue;
+
+// Font:
+$baseFontSize: 14px;
+$mainFont: K2D;
+
+// Strings:
+$rootPath: "http://localhost:8000/";
+$baseClassName: "col";
+
+.#{$baseClassName}1 {
+  font-size: $baseFontSize;
+}
+
+.#{$baseClassName}2 {
+  font-size: $baseFontSize;
+}
+
+// Basics:
+
+html {
+  font-family: $mainFont;
+  font-size: $baseFontSize;
+}
+
+body {
+  background-color: darken($mainBgColor, 25%);
+  // Example of using strings. Is not actually functional:
+  background-image: url("#{$rootPath}images/background.jpg");
+}
+
+nav {
+  float: right;
+  font-weight: 600;
+  ul {
+    list-style-type: none;
+    li {
+      float: left;
+      margin: 2px;
+      a {
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+
+      }
+    }
+  }
+}
+
+
+footer {
+  p {
+    font-size: 4px + 8;
+    color: $mainColor;
+    text-align: center;
+  }
+}
+
+// Heading sizes:
+h1 {
+  font-size: $baseFontSize + 12;
+}
+
+h2 {
+  font-size: $baseFontSize + 8;
+}
+
+h3 {
+  font-size: $baseFontSize + 4;
+}
+
+// Forms:
+.container {
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button {
+  // Nested rules example:
+  font: {
+    family: KoHo;
+    size: $baseFontSize + 2;
+  }
+}
+
+.species-select {
+  margin-bottom: 4px;
+}
+
+form {
+  background-color: $mainBgColor;
+}
