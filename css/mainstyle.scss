@@ -1,12 +1,24 @@
 // Imports:
+@import "init.scss";
+@import "colors.scss";
+@import "mixins.scss";
 
 // Site colors:
-$mainColor: Green;
-$mainBgColor: LightBlue;
+// These are now imported.
 
 // Font:
 $baseFontSize: 14px;
 $mainFont: K2D;
+
+// Other Variables:
+$containerWidth: 600px;
+
+$app-size: 1024px;
+
+@function center-width($gutter) {
+  @return $app-size - ($gutter * 2);
+}
+
 
 // Strings:
 $rootPath: "http://localhost:8000/";
@@ -28,14 +40,17 @@ html {
 }
 
 body {
-  background-color: darken($mainBgColor, 25%);
+  background-color: $mainBgColor;
   // Example of using strings. Is not actually functional:
   background-image: url("#{$rootPath}images/background.jpg");
 }
 
+// An example of nested rules:
 nav {
   float: right;
   font-weight: 600;
+  color: $linksColor;
+  margin-right: 10px;
   ul {
     list-style-type: none;
     li {
@@ -43,12 +58,22 @@ nav {
       margin: 2px;
       a {
         text-decoration: none;
+        color: inherit;
         &:hover {
           text-decoration: underline;
+          color: lighten($linksColor, 10%);
         }
-
       }
     }
+  }
+}
+
+header {
+  width: $containerWidth;
+  margin: 5px auto;
+  padding: 5px;
+  img {
+    width: 600px;
   }
 }
 
@@ -56,14 +81,17 @@ nav {
 footer {
   p {
     font-size: 4px + 8;
-    color: $mainColor;
+    color: $mainFontColor;
     text-align: center;
+    font-family: Oswald;
   }
 }
 
 // Heading sizes:
 h1 {
   font-size: $baseFontSize + 12;
+  color: $mainHeadingColor;
+  text-align: center;
 }
 
 h2 {
@@ -74,11 +102,23 @@ h3 {
   font-size: $baseFontSize + 4;
 }
 
+// Demonstrating @for loops:
+@for $colNumber from 2 through 5 {
+  .col-#{$colNumber} { // Creates a new class for each one, .col-2, .col-3 and so on.
+    width: ($app-size / $colNumber) - 10px;
+  }
+}
+
 // Forms:
+
 .container {
-  width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  width: center-width(200px);
+  margin: 5px auto;
+  // margin-left: auto;
+  // margin-right: auto;
+  padding: 5px;
+  background-color: $mainFontColor;
+  @include rounded-corners(10px);
 }
 
 .button {
@@ -94,5 +134,16 @@ h3 {
 }
 
 form {
-  background-color: $mainBgColor;
+  background-color: lighten($mainBgColor, 15%);
+  color: $mainFontColor;
+  width: 400px;
+  border: $linksColor 1px solid;
+  @include rounded-corners();
+  margin: 5px auto;
+  padding: 5px;
+  h2 {
+    color: $secondHeadingColor;
+    text-align: center;
+    font-family: Chakra Petch;
+  }
 }
